@@ -1,0 +1,111 @@
+version: '3.7'
+services:
+    mysql_db:
+        image: mariadb:latest
+        container_name: pg_mysql
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        volumes:
+            - ./db/mysql:/var/lib/mysql
+        networks:
+            - db
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        restart: always
+        environment:
+            PMA_HOST: mysql_db
+            PMA_USER: ${PHPMYADMIN_USER}
+            PMA_PASSWORD: ${PHPMYADMIN_PASSWORD}
+        ports:x`
+            - "8080:80"
+
+    postgre-db:
+        image: postgres:latest
+        container_name: pg-postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_PORT: ${POSTGRES_PORT}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+        volumes:
+            - ./db/postgresql:/var/lib/postgresql/data
+        networks:
+            - db
+
+    php:
+        container_name: pg_php_fpm
+        build: ./php-fpm
+        ports:
+            - "9000:9000"
+        volumes:
+            - ./symfony:/var/www/symfony:cached
+            - ./logs/symfony:/var/www/symfony/var/log:cached
+        depends_on: 
+            - db
+        networks:
+            - db
+            - php
+    nginx:
+        container_name: pg_nginx
+        build: ./nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./logs/nginx:/var/log/nginx:cached
+            - ./symfony:/var/www/symfony:cached
+        depends_on:
+            - php
+        networks:
+            - php
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+        container_name: pg_elasticsearch
+        ports:
+            - "9200:9200"
+        environment:
+            discovery.type: "single-node"
+        networks:
+            elk_stack:
+                aliases:
+                    - "elasticsearch"
+
+    logstash:
+        image: docker.elastic.co/logstash/logstash:7.10.1
+        container_name: pg_logstash
+        volumes:
+            - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
+            - ./elk/logstash/conf.d:/etc/logstash/conf.d:cached
+            - ./logs/symfony:/var/www/symfony/var/log:cached
+            - ./logs/nginx:/var/log/nginx:cached
+        depends_on:
+            - elasticsearch
+        networks:
+            - elk_stack
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:7.10.1
+        container_name: pg_kibana
+        ports:
+            - "81:5601"
+        environment:
+            ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
+            KIBANA_SERVER_NAME: ${KIBANA_SERVER_NAME}
+        depends_on:
+                - elasticsearch
+        networks:
+            - elk_stack
+
+networks:
+    db:
+    php:
+    elk_stack:
