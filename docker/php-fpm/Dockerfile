@@ -36,13 +36,6 @@ RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
     && ln -s /usr/bin/php8 /usr/local/bin/php
 
-# Set locale
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
-
-# Set timezone
-RUN ln -s /usr/share/zoneinfo/Europe/Kiev /etc/localtime
-RUN "date"
-
 COPY symfony.ini /etc/php8/conf.d/
 COPY symfony.ini /etc/php8/cli/conf.d/
 COPY xdebug.ini  /etc/php8/conf.d/
