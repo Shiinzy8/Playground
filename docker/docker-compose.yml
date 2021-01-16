@@ -17,13 +17,14 @@ services:
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:latest
+        container_name: pg_phpmyadmin
         restart: always
+        ports:
+            - "8080:80"
         environment:
             PMA_HOST: mysql_db
             PMA_USER: ${PHPMYADMIN_USER}
             PMA_PASSWORD: ${PHPMYADMIN_PASSWORD}
-        ports:x`
-            - "8080:80"
 
     postgre-db:
         image: postgres:latest
@@ -35,37 +36,44 @@ services:
             POSTGRES_PORT: ${POSTGRES_PORT}
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
         volumes:
             - ./db/postgresql:/var/lib/postgresql/data
         networks:
             - db
 
     php:
-        container_name: pg_php_fpm
         build: ./php-fpm
+        container_name: pg_php_fpm
         ports:
             - "9000:9000"
         volumes:
-            - ./symfony:/var/www/symfony:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
+            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}:cached
+            - ${LOCAL_SYMFONY_LOG}:${DOKER_SYMFONY_LOG}:cached
         depends_on: 
             - db
         networks:
             - db
             - php
+
     nginx:
-        container_name: pg_nginx
         build: ./nginx
+        container_name: pg_nginx
         ports:
             - "80:80"
         volumes:
-            - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - ${LOCAL_NGINX_LOG}:${DOCKER_NGINX_LOG}:cached
+            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}:cached
         depends_on:
             - php
         networks:
             - php
+
+    node:
+        build: ./node
+        container_name: ph_node
+        volumes:
+            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}
+        command: bash -c "yarn && yarn dev"
 
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
