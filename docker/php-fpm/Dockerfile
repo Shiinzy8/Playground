@@ -16,7 +16,7 @@ RUN apk add --no-cache \
     php8-openssl \
     php8-pdo \
     php8-pdo_mysql \
-    php8-pdo_pgsql
+    php8-pdo_pgsql \
     php8-mysqli \
     php8-xml \
     php8-zlib \
@@ -36,8 +36,10 @@ RUN curl -sS https://getcomposer.org/installer | tee composer-setup.php \
     && chmod +x composer.phar && mv composer.phar /usr/bin/composer \
     && ln -s /usr/bin/php8 /usr/local/bin/php
 
+# Set locale
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
 # Set timezone
-RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Europe/Kiev /etc/localtime
 RUN "date"
 

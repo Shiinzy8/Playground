@@ -26,7 +26,7 @@ services:
             PMA_USER: ${PHPMYADMIN_USER}
             PMA_PASSWORD: ${PHPMYADMIN_PASSWORD}
 
-    postgre-db:
+    postgre_db:
         image: postgres:latest
         container_name: pg-postgres
         ports:
@@ -47,10 +47,11 @@ services:
         ports:
             - "9000:9000"
         volumes:
-            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}:cached
-            - ${LOCAL_SYMFONY_LOG}:${DOKER_SYMFONY_LOG}:cached
-        depends_on: 
-            - db
+            - ./symfony:/var/logs:cached
+            - ./symfony:/var/www/symfony:cached
+        depends_on:
+            - mysql_db
+            - postgre_db
         networks:
             - db
             - php
@@ -61,8 +62,8 @@ services:
         ports:
             - "80:80"
         volumes:
-            - ${LOCAL_NGINX_LOG}:${DOCKER_NGINX_LOG}:cached
-            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}:cached
+            - ./logs/nginx:/var/log/nginx:cached
+            - ./symfony:/var/www/symfony:cached
         depends_on:
             - php
         networks:
@@ -72,7 +73,7 @@ services:
         build: ./node
         container_name: ph_node
         volumes:
-            - ${LOCAL_SYMFONY}:${DOCKER_SYMFONY}
+            - ./symfony:/var/www/symfony
         command: bash -c "yarn && yarn dev"
 
     elasticsearch:
