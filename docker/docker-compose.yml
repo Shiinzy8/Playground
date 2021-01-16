@@ -11,7 +11,7 @@ services:
             MYSQL_USER: ${MYSQL_USER}
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         volumes:
-            - ./db/mysql:/var/lib/mysql
+            - ./../db/mysql:/var/lib/mysql
         networks:
             - db
 
@@ -37,7 +37,7 @@ services:
             POSTGRES_USER: ${POSTGRES_USER}
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         volumes:
-            - ./db/postgresql:/var/lib/postgresql/data
+            - ./../db/postgresql:/var/lib/postgresql/data
         networks:
             - db
 
@@ -47,8 +47,8 @@ services:
         ports:
             - "9000:9000"
         volumes:
-            - ./symfony:/var/logs:cached
-            - ./symfony:/var/www/symfony:cached
+            - ./../symfony:/var/logs:cached
+            - ./../symfony:/var/www/symfony:cached
         depends_on:
             - mysql_db
             - postgre_db
@@ -62,8 +62,8 @@ services:
         ports:
             - "80:80"
         volumes:
-            - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - ./../logs/nginx:/var/log/nginx:cached
+            - ./../symfony:/var/www/symfony:cached
         depends_on:
             - php
         networks:
@@ -73,7 +73,7 @@ services:
         build: ./node
         container_name: ph_node
         volumes:
-            - ./symfony:/var/www/symfony
+            - ./../symfony:/var/www/symfony
         command: bash -c "yarn && yarn dev"
 
     elasticsearch:
@@ -94,8 +94,8 @@ services:
         volumes:
             - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
             - ./elk/logstash/conf.d:/etc/logstash/conf.d:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
-            - ./logs/nginx:/var/log/nginx:cached
+            - ./../logs/symfony:/var/www/symfony/var/log:cached
+            - ./../logs/nginx:/var/log/nginx:cached
         depends_on:
             - elasticsearch
         networks:
