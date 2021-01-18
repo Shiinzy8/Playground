@@ -15,17 +15,6 @@ services:
         networks:
             - db
 
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin:latest
-        container_name: pg_phpmyadmin
-        restart: always
-        ports:
-            - "8080:80"
-        environment:
-            PMA_HOST: mysql_db
-            PMA_USER: ${PHPMYADMIN_USER}
-            PMA_PASSWORD: ${PHPMYADMIN_PASSWORD}
-
     postgre_db:
         image: postgres:latest
         container_name: pg_postgres
@@ -38,6 +27,36 @@ services:
             POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         volumes:
             - ./../db/postgresql:/var/lib/postgresql/data
+        networks:
+            - db
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        container_name: pg_phpmyadmin
+        restart: always
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: mysql_db
+            PMA_USER: ${PHPMYADMIN_USER}
+            PMA_PASSWORD: ${PHPMYADMIN_PASSWORD}
+        depends_on:
+            - mysql_db
+        networks:
+            - db
+
+    phppgadmin:
+        image: bitnami/phppgadmin:latest
+        container_name: pg_phppgadmin
+        restart: always
+        ports:
+            - "9090:8080"
+            - "9443:8443"
+        environment:
+            DATABASE_HOST: postgre_db
+            PHP_PG_ADMIN_SERVER_DEFAULT_DB: playground
+        depends_on:
+            - postgre_db
         networks:
             - db
 
