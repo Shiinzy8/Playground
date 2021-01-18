@@ -2,10 +2,11 @@
 
 namespace App\Controller\AndriiFun;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
     /**
      * @Route ("/")
@@ -23,6 +24,8 @@ class DefaultController
      */
     public function show(int $id): Response
     {
-        return new Response("Future page to show something with id: {$id}");
+        return $this->render('show.html.twig', [
+            'id' => $id,
+        ]);
     }
 }
