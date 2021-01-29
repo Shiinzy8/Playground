@@ -12,28 +12,34 @@ class DefaultController extends AbstractController
      * @Route ("/")
      * @return Response
      */
-    public function index(): Response
+    public function homepage(): Response
     {
-        return $this->render('index.html.twig', [
-            'phpversion' => phpversion(),
-        ]);
+        return $this->render('@andrii/question/homepage.html.twig', []);
     }
 
     /**
-     * @Route ("/show/{id}")
-     * @param int $id
+     * @Route("/questions/{slug}", name="app_question_show")
+     * @param string $slug
      * @return Response
      */
-    public function show(int $id): Response
+    public function questions(string $slug): Response
     {
         // after installing with composer require profiler
         // and composer require debug we can monitor dump in debug toolbar and can ran command
         // php bin/console server:dump and we will see dump in console
-        dump($id, $this);
-//        dd($id, $this); debug and die
+        dump($slug, $this);
+        // dd($id, $this); debug and die
 
-        return $this->render('@andrii/show.html.twig', [
-            'id' => $id,
+
+        $answers = [
+            'Make sure your cat is sitting perfectly still 🤣',
+            'Honestly, I like furry shoes better than MY cat',
+            'Maybe... try saying the spell backwards?',
+        ];
+
+        return $this->render('@andrii/question/show.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)),
+            'answers' => $answers,
         ]);
     }
 }
