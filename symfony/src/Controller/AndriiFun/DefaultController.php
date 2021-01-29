@@ -26,7 +26,11 @@ class DefaultController extends AbstractController
      */
     public function show(int $id): Response
     {
+        // after installing with composer require profiler
+        // and composer require debug we can monitor dump in debug toolbar and can ran command
+        // php bin/console server:dump and we will see dump in console
         dump($id, $this);
+//        dd($id, $this); debug and die
 
         return $this->render('@andrii/show.html.twig', [
             'id' => $id,
