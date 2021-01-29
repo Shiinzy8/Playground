@@ -14,7 +14,9 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        return new Response("Hello world + php version:" . phpversion());
+        return $this->render('index.html.twig', [
+            'phpversion' => phpversion(),
+        ]);
     }
 
     /**
@@ -24,7 +26,9 @@ class DefaultController extends AbstractController
      */
     public function show(int $id): Response
     {
-        return $this->render('show.html.twig', [
+        dump($id, $this);
+
+        return $this->render('@andrii/show.html.twig', [
             'id' => $id,
         ]);
     }
