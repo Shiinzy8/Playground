@@ -5,6 +5,7 @@ namespace App\Controller\AndriiFun;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Environment;
 
 class QuestionController extends AbstractController
 {
@@ -12,8 +13,14 @@ class QuestionController extends AbstractController
      * @Route ("/", name="app_question_homepage")
      * @return Response
      */
-    public function homepage(): Response
+    public function homepage(Environment $twigEnvironment): Response
     {
+        /* long version
+        $html = $twigEnvironment->render('@andrii/question/homepage.html.twig');
+
+        return new Response($html);
+        */
+
         return $this->render('@andrii/question/homepage.html.twig', []);
     }
 

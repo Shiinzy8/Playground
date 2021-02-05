@@ -4,6 +4,7 @@
 namespace App\Controller\AndriiFun;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,13 +17,15 @@ class CommentController extends AbstractController
      * @param string $direction
      * @return JsonResponse
      */
-    public function commentVote(int $id, string $direction): JsonResponse
+    public function commentVote(int $id, string $direction, LoggerInterface $logger): JsonResponse
     {
         // TODO  use id to query database
 
         if ($direction == 'up') {
+            $logger->info("Voting up!");
             $currentVotes = rand(7, 100);
         } else {
+            $logger->info("Voting down!");
             $currentVotes = rand(0, 5);
         }
 
