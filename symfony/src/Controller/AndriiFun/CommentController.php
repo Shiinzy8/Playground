@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comment/{id}/vote/{direction}", name="app_comment_vote", methods={"POST"})
+     * @Route("/comment/{id<\d+>}/vote/{direction<up|down>}", name="app_comment_vote", methods={"POST"})
      * @param int $id
      * @param string $direction
      * @return JsonResponse
