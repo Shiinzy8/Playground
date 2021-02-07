@@ -90,10 +90,10 @@ services:
 
     node:
         build: ./node
-        container_name: ph_node
+        container_name: pg_node
         volumes:
             - ./../symfony:/var/www/symfony
-        command: bash -c "yarn && yarn dev"
+        command: bash -c "yarn && yarn watch"
 
     elasticsearch:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
