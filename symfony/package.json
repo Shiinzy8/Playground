@@ -1,19 +1,9 @@
 {
-    "browserslist": [
-        "defaults"
-    ],
     "devDependencies": {
-        "@symfony/stimulus-bridge": "^2.0.1",
+        "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
-        "bootstrap": "^4.4.1",
         "core-js": "^3.0.0",
-        "eslint": "^6.7.2",
-        "eslint-config-airbnb-base": "^14.0.0",
-        "eslint-plugin-import": "^2.19.1",
-        "eslint-plugin-vue": "^6.0.1",
         "regenerator-runtime": "^0.13.2",
-        "sass": "^1.29.0",
-        "sass-loader": "^8.0.0",
         "stimulus": "^2.0.0",
         "webpack-notifier": "^1.6.0"
     },
@@ -23,7 +13,6 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress",
-        "lint": "node_modules/.bin/eslint assets/** --ignore-pattern *.scss --ignore-pattern *.gif --ignore-pattern *.png"
+        "build": "encore production --progress"
     }
 }
