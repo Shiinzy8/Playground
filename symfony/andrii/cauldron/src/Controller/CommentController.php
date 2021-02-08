@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller\AndriiFun;
+namespace Cauldron\Controller;
 
 
 use Psr\Log\LoggerInterface;
@@ -15,6 +15,7 @@ class CommentController extends AbstractController
      * @Route("/comment/{id<\d+>}/vote/{direction<up|down>}", name="app_comment_vote", methods={"POST"})
      * @param int $id
      * @param string $direction
+     * @param LoggerInterface $logger
      * @return JsonResponse
      */
     public function commentVote(int $id, string $direction, LoggerInterface $logger): JsonResponse

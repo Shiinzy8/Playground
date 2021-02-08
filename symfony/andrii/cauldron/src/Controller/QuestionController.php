@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\AndriiFun;
+namespace Cauldron\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,6 +11,7 @@ class QuestionController extends AbstractController
 {
     /**
      * @Route ("/", name="app_question_homepage")
+     * @param Environment $twigEnvironment
      * @return Response
      */
     public function homepage(Environment $twigEnvironment): Response
@@ -21,7 +22,7 @@ class QuestionController extends AbstractController
         return new Response($html);
         */
 
-        return $this->render('@andrii/question/homepage.html.twig', []);
+        return $this->render('@andrii_cauldron/question/homepage.html.twig', []);
     }
 
     /**
@@ -44,7 +45,7 @@ class QuestionController extends AbstractController
             'Maybe... try saying the spell backwards?',
         ];
 
-        return $this->render('@andrii/question/show.html.twig', [
+        return $this->render('@andrii_cauldron/question/show.html.twig', [
             'question' => ucwords(str_replace('-', ' ', $slug)),
             'answers' => $answers,
         ]);

@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\AndriiFun\DefaultController::index
+
+cauldron:
+  resource: '../andrii/cauldron/src/Controller/'
+  type:     annotation
+mvp_office:
+  resource: '../andrii/mvp_office/src/Controller/'
+  type:     annotation
