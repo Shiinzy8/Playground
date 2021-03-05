@@ -1,0 +1,14 @@
+doctrine_migrations_multiple_database:
+  entity_managers:
+    default:
+      migrations_paths:
+        'App\Migrations': '%kernel.project_dir%/migrations'
+      storage:
+        table_storage:
+          table_name: 'default_d_m_v' # Default (SQL table) metadata storage configuration
+    andrii_mvp_office:
+      migrations_paths:
+        'MVP_Office\Migrations': '%kernel.project_dir%/andrii/mvp_office/migrations'
+      storage:
+        table_storage:
+          table_name: 'andrii_mvp_office_d_m_v' # Default (SQL table) metadata storage configuration

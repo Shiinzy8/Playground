@@ -9,10 +9,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class CommentController
+ * @package Cauldron\Controller
+ */
 class CommentController extends AbstractController
 {
     /**
-     * @Route("/comment/{id<\d+>}/vote/{direction<up|down>}", name="app_comment_vote", methods={"POST"})
+     * @Route("/comment/{id<\d+>}/vote/{direction<up|down>}", name="comment_vote", methods={"POST"})
      * @param int $id
      * @param string $direction
      * @param LoggerInterface $logger

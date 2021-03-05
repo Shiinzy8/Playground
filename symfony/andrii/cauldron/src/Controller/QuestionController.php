@@ -1,16 +1,22 @@
 <?php
 
+
 namespace Cauldron\Controller;
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
+/**
+ * Class QuestionController
+ * @package Cauldron\Controller
+ */
 class QuestionController extends AbstractController
 {
     /**
-     * @Route ("/", name="app_question_homepage")
+     * @Route ("/", name="homepage")
      * @param Environment $twigEnvironment
      * @return Response
      */
@@ -26,7 +32,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/questions/{slug}", name="app_question_show")
+     * @Route("/questions/{slug}", name="question_show")
      * @param string $slug
      * @return Response
      */
@@ -45,9 +51,12 @@ class QuestionController extends AbstractController
             'Maybe... try saying the spell backwards?',
         ];
 
-        return $this->render('@andrii_cauldron/question/show.html.twig', [
-            'question' => ucwords(str_replace('-', ' ', $slug)),
-            'answers' => $answers,
-        ]);
+        return $this->render(
+            '@andrii_cauldron/question/show.html.twig',
+            [
+                'question' => ucwords(str_replace('-', ' ', $slug)),
+                'answers' => $answers,
+            ]
+        );
     }
 }

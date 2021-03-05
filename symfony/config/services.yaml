@@ -24,6 +24,10 @@ services:
         resource: '../andrii/cauldron/src/'
     MVP_Office\:
         resource: '../andrii/mvp_office/src/'
+        exclude:
+            - '../andrii/mvp_office/src/DependencyInjection/'
+            - '../andrii/mvp_office/src/Entity/'
+            - '../andrii/mvp_office/src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -33,7 +37,7 @@ services:
     Cauldron\Controller\:
         resource: '../andrii/cauldron/src/Controller/'
         tags: ['controller.service_arguments']
-    MVPOffice\Controller\:
+    MVP_Office\Controller\:
         resource: '../andrii/mvp_office/src/Controller/'
         tags: [ 'controller.service_arguments' ]
 
