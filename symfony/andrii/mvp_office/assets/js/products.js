@@ -1,14 +1,17 @@
 import Vue from 'vue';
 
-const app = new Vue({
+const template = '<h1>Hello {{ firstName }} ! Is this cooler </h1>';
+
+new Vue({
     el: '#app',
     data() {
         return {
             firstName: 'Andrii',
         };
     },
-    template: '<h1>Hello {{ firstName }} ! Is this cooler </h1>',
+    render(h) {
+        return Vue.compile(template).render.call(this, h);
+        // return Vue.compile(this.$options.template).render.call(this, h);
+        // return Vue.compile(this.$options.template).render.(h); //same as above
+    },
 });
-
-window.app = app; // this allow to play with app in console
-// for example now you can tap in console app.firstName and change it to another value
