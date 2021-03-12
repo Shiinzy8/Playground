@@ -1,11 +1,16 @@
 <template>
-  <h1>Hello {{ firstName }} ! Is this cooler </h1>
+    <h1>Hello {{ firstName }} ! Is this cooler </h1>
 </template>
 
 <script>
 export default {
-name: "products"
-}
+    name: 'Products', // for debugging
+    data() {
+        return {
+            firstName: 'Andrii',
+        };
+    },
+};
 </script>
 
 <style scoped>
