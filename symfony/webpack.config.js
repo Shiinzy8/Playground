@@ -21,8 +21,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-    .addEntry('andrii/cauldron', './andrii/cauldron/assets/js/cauldron.js')
-    .addEntry('andrii/mvp_office', './andrii/mvp_office/assets/js/mvp_office.js')
+    .addEntry('a/cauldron/app', './andrii/cauldron/assets/js/app.js')
+    .addEntry('a/mvp_office/app', './andrii/mvp_office/assets/js/app.js')
+    .addEntry('a/mvp_office/product', './andrii/mvp_office/assets/js/products.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

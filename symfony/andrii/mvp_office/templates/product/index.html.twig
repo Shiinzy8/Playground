@@ -1,11 +1,17 @@
 {% extends '@andrii_mvp_office/base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <h1>Hi! I would ❤️ it if someone put a Vue app here...</h1>
-            </div>
-        </div>
-    </div>
+    <div id="app"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('a/mvp_office/product') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('a/mvp_office/product') }}
 {% endblock %}
