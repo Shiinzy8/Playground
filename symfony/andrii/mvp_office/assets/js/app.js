@@ -6,7 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import '../scss/mvp_office.scss';
+import '../scss/app.scss';
 
 // start the Stimulus application
 import '../../../../assets/bootstrap';
