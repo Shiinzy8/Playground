@@ -1,0 +1,17 @@
+{% extends '@andrii_mvp_office/base.html.twig' %}
+
+{% block body %}
+    <div id="app"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    {{ encore_entry_script_tags('a/mvp_office/product') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {{ encore_entry_link_tags('a/mvp_office/product') }}
+{% endblock %}

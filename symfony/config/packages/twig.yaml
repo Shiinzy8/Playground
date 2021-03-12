@@ -1,2 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    paths:
+        '%kernel.project_dir%/andrii/cauldron/templates': andrii_cauldron
+        '%kernel.project_dir%/andrii/mvp_office/templates': andrii_mvp_office
