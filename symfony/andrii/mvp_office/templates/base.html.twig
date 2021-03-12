@@ -6,6 +6,7 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('andrii/mvp_office') }}
     {% endblock %}
+    <link rel="icon" type="image/png" href="{{ asset('images/andrii/mvp_office/favicon.png') }}">
 </head>
 <body>
 <header class="header">
@@ -16,14 +17,15 @@
                  height="50"
                  alt="MVP Office Supplies Logo"
             >
-
+        </a>
+        <a class="navbar-brand" href="{{ path('andrii_mvp_office_homepage') }}">
             <span class="p-3">MVP Office Supplies</span>
         </a>
 
         <ul class="navbar-nav">
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('andrii_mvp_office_logout') }}">
+                    <a class="nav-link" href="{{ path('andrii_mvp_office_login') }}">
                         Log out
                     </a>
                 </li>
