@@ -1,11 +1,12 @@
 <template>
     <span class="p-3">
-        Shipping takes 10-12 weeks, and products probably won't work
+        {{ title }}
     </span>
 </template>
 
 <script>
 export default {
-    name: 'LegendComponent',
+    name: 'Legend',
+    props: ['title'], // this is like arguments for a function
 };
 </script>
