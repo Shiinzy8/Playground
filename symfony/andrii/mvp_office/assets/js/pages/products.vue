@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <aside class="col-xs-12 col-3">
-                <div class="sidebar p-3 mb-5">
+                <div :class="[$style.sidebar, 'p-3', 'mb-5']">
                     <h5 class="text-center">
                         Categories
                     </h5>
@@ -42,12 +42,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!--<legend-component v-bind:title="legend + ' this is JavaScript'" />-->
                     <legend-component :title="legend + ' this is JavaScript'" />
-                    <!-- <legend-component/> -->
-                    <!-- now we will use default title of legend component -->
-                    <!-- <legend-component v-bind:title="legend" />-->
-                    <!-- here we use data from product component not from legend -->
                 </div>
             </div>
         </div>
@@ -70,7 +65,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
     @import '../../scss/components/light-component.scss';
 
     .sidebar{
