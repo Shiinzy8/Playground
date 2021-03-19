@@ -42,7 +42,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <legend-component title="TODO put legend here"/>
+                    <!--<legend-component v-bind:title="legend + ' this is JavaScript'" />-->
+                    <legend-component :title="legend + ' this is JavaScript'" />
+                    <!-- <legend-component/> -->
+                    <!-- now we will use default title of legend component -->
+                    <!-- <legend-component v-bind:title="legend" />-->
+                    <!-- here we use data from product component not from legend -->
                 </div>
             </div>
         </div>
