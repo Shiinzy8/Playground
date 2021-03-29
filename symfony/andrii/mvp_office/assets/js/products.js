@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './pages/products';
+import App from 'mvp_office_js/pages/products';
 
 new Vue({
     render: (h) => h(App),
