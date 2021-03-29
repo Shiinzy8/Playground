@@ -1,34 +1,39 @@
 <template>
     <div
-        :class="[$style.sidebar, 'p-3', 'mb-5']"
-        :style="{ width: collapsed ? '70px' : 'auto'}"
+        :class="{
+            [$style.component]: true,
+            [$style.collapsed]: collapsed,
+            'p-3': true,
+            'mb-5': true,
+        }"
     >
-        <h5 class="text-center">
-            Categories
-        </h5>
-        <ul class="nav flex-column mb4">
-            <li class="nav-item">
-                <a
-                    class="nav-link"
-                    href="/"
-                >All Products</a>
-            </li>
-            <li
-                v-for="(category, index) in categories"
-                :key="index"
-                class="nav-item"
-            >
-                <a
-                    class="nav-link"
-                    :href="category.link"
+        <div v-show="!collapsed">
+            <h5 class="text-center">
+                Categories
+            </h5>
+            <ul class="nav flex-column mb4">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="/"
+                    >All Products</a>
+                </li>
+                <li
+                    v-for="(category, index) in categories"
+                    :key="index"
+                    class="nav-item"
                 >
-                    {{ category.name }}
-                </a>
-            </li>
-        </ul>
+                    <a
+                        class="nav-link"
+                        :href="category.link"
+                    >
+                        {{ category.name }}
+                    </a>
+                </li>
+            </ul>
 
-        <hr>
-
+            <hr>
+        </div>
         <div class="d-flex justify-content-end">
             <button
                 class="btn btn-secondary btn-sm"
@@ -58,15 +63,6 @@ export default {
             ],
         };
     },
-    created() {
-        console.log(this, this.categories);
-    },
-    props: {
-        testProp: {
-            type: String,
-            default: 'I am default value',
-        },
-    },
     methods: {
         toggleCollapsed() {
             // console.log('CLICKED!');
@@ -80,13 +76,18 @@ export default {
 <style lang="scss" module>
 @import '~mvp_office_scss/components/light-component.scss';
 
-.sidebar{
+.component {
     @include light-component;
-}
 
-ul {
-    li a:hover {
-        background: $blue-component-link-hover
+    &.collapsed {
+        width: 70px;
+    }
+
+    ul {
+        li a:hover {
+            background: $blue-component-link-hover
+        }
     }
 }
+
 </style>
