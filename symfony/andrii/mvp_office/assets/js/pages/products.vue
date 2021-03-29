@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Catalog from '../components/catalog';
-import Sidebar from '../components/sidebar';
+import Catalog from 'mvp_office_js/components/catalog';
+import Sidebar from 'mvp_office_js/components/sidebar';
 
 export default {
     name: 'Products',

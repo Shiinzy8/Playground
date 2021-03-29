@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -34,12 +35,17 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
+    .addAliases({
+        mvp_office_js: path.resolve(__dirname, 'andrii/mvp_office/assets', 'js'),
+        mvp_office_scss: path.resolve(__dirname, 'andrii/mvp_office/assets', 'scss'),
+    })
+
     /*
      * FEATURE CONFIG
      *
      * Enable & configure other features below. For a full
      * list of features, see:
-     * https://symfony.com/doc/current/frontend.html#adding-more-features
+     * https://symfony.com/doc/current/frontend.html#adding-more-featuresmvp_office_scss
      */
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()

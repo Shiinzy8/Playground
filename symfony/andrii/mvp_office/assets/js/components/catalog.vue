@@ -20,7 +20,7 @@
 
 <script>
 
-import LegendComponent from './legend';
+import LegendComponent from 'mvp_office_js/components/legend';
 
 export default {
     name: 'Catalog',
