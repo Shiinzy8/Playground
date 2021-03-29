@@ -58,6 +58,15 @@ export default {
             ],
         };
     },
+    created() {
+        console.log(this);
+    },
+    props: {
+        testProp: {
+            type: String,
+            default: 'I am default value',
+        },
+    },
     methods: {
         toggleCollapsed() {
             // console.log('CLICKED!');
