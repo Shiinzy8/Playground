@@ -1,5 +1,5 @@
 <template>
-    <div :class="componentClass">
+    <div :class="[this.$style.component, 'p-3', 'mb-5']">
         <div v-show="!collapsed">
             <h5 class="text-center">
                 Categories
@@ -61,20 +61,6 @@ export default {
             ],
         };
     },
-    computed: {
-        /**
-         * Computes the component classes depending on collapsed state
-         * @returns string[]
-         */
-        componentClass() {
-            const classes = [this.$style.component, 'p-3', 'mb-5'];
-
-            if (this.collapsed) {
-                classes.push(this.$style.collapsed);
-            }
-            return classes;
-        },
-    },
 };
 
 </script>
@@ -84,10 +70,6 @@ export default {
 
 .component {
     @include light-component;
-
-    &.collapsed {
-        width: 70px;
-    }
 
     ul {
         li a:hover {
