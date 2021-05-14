@@ -41,9 +41,14 @@
 
 export default {
     name: 'Sidebar',
+    props: {
+        collapsed: {
+            type: Boolean,
+            required: true,
+        },
+    },
     data() {
         return {
-            collapsed: false,
             categories: [
                 {
                     name: 'Dot Matrix Printers',
