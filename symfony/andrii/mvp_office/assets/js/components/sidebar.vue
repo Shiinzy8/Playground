@@ -78,9 +78,7 @@ export default {
     methods: {
         toggleCollapsed() {
             // console.log('CLICKED!');
-            this.collapsed = !this.collapsed;
-
-            console.log(this.componentClass);
+            this.$emit('toggle-collapsed');
         },
     },
 };
