@@ -7,15 +7,7 @@
                 </h1>
             </div>
         </div>
-        <div class="row">
-            <div
-                v-for="product in products"
-                :key="product['@id']"
-                class="col-xs-12 col-6 mb-2 pb-2"
-            >
-                {{ product.name }}
-            </div>
-        </div>
+        <product-list :products="products"/>
         <div class="row">
             <legend-component :title="legend + ' this is JavaScript'" />
         </div>
@@ -26,11 +18,13 @@
 
 import axios from 'axios';
 import LegendComponent from 'mvp_office_js/components/legend';
+import ProductList from 'mvp_office_js/components/product_list';
 
 export default {
     name: 'Catalog',
     components: {
         LegendComponent,
+        ProductList,
     },
     data() {
         return {
