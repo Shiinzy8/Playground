@@ -1,18 +1,21 @@
 <template>
     <div class="row">
-        <div
+        <product-card
             v-for="product in products"
             :key="product['@id']"
-            class="col-xs-12 col-6 mb-2 pb-2"
-        >
-            {{ product.name }}
-        </div>
+            :product="product"
+        />
     </div>
 </template>
 
 <script>
+import ProductCard from 'mvp_office_js/components/product_list/product_card';
+
 export default {
     name: 'ProductList',
+    components: {
+        ProductCard,
+    },
     props: {
         products: {
             type: Array,
