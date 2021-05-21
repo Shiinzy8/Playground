@@ -74,6 +74,7 @@ class Product
     /**
      * @ORM\ManyToMany(targetEntity="MVP_Office\Entity\Color")
      * @Groups("product:read")
+     * @ORM\JoinTable(name="andrii_mvp_office_product_color")
      */
     private $colors;
 

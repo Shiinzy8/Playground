@@ -33,11 +33,14 @@ export default {
             legend: 'Shipping takes 10-12 weeks, and products probably won\'t work',
         };
     },
-    mounted() {
-        axios.get('/api/products').then((response) => {
-            // then function is a promise
-            console.log(response);
-        });
+    async mounted() {
+        // axios.get('/api/products').then((response) => {
+        //     // then function is a promise
+        //     console.log(response);
+        // });
+        // const response = axios.get('/api/products'); - this respnose is a promise
+        const response = await axios.get('/api/products'); // need to add async to mounted
+        console.log(response);
     },
 };
 </script>
