@@ -30,3 +30,4 @@ doctrine:
                         dir: '%kernel.project_dir%/andrii/mvp_office/src/Entity'
                         prefix: 'MVP_Office\Entity'
                         alias: MVP_Office
+                        table_prefix:
