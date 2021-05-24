@@ -18,7 +18,7 @@
                 >
                     <a
                         class="nav-link"
-                        :href="`/category/${category.id}`"
+                        :href="`/andrii/mvp_office/category/${category.id}`"
                     >
                         {{ category.name }}
                     </a>
