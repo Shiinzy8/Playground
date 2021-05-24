@@ -7,7 +7,10 @@
                 </h1>
             </div>
         </div>
-        <product-list :products="products"/>
+        <product-list
+            :products="products"
+            :loading="loading"
+        />
         <div class="row">
             <legend-component :title="legend + ' this is JavaScript'" />
         </div>
@@ -35,6 +38,7 @@ export default {
     data() {
         return {
             products: [],
+            loading: false,
             legend: 'Shipping takes 10-12 weeks, and products probably won\'t work',
         };
     },
@@ -47,6 +51,8 @@ export default {
             params.category = this.currentCategoryId;
         }
 
+        this.loading = true;
+
         // axios.get('/api/products').then((response) => {
         //     // then function is a promise
         //     console.log(response);
@@ -54,9 +60,18 @@ export default {
         // const response = axios.get('/api/products'); - this respnose is a promise
         // const response = await axios.get('/api/products'); // need to add async to mounted
 
-        const response = await axios.get('/api/products', {
-            params,
-        });
+        let response;
+        try {
+            response = await axios.get('/api/products', {
+                params,
+            });
+
+            this.loading = false;
+        } catch (e) {
+            this.loading = false;
+
+            return;
+        }
 
         // console.log(response);
         this.products = response.data['hydra:member'];
