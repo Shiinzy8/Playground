@@ -5,6 +5,7 @@
             type="search"
             placeholder="Search Products..."
             class="form-control"
+            @input="searchTerm = $event.target.value"
         >
     </div>
 </template>
