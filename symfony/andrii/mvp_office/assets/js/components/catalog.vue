@@ -32,7 +32,9 @@ export default {
             legend: 'Shipping takes 10-12 weeks, and products probably won\'t work',
         };
     },
-    async mounted() {
+    // it is also can be created function
+    // async mounted() {
+    async created() {
         // axios.get('/api/products').then((response) => {
         //     // then function is a promise
         //     console.log(response);
