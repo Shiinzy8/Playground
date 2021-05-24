@@ -19,9 +19,9 @@
 
 <script>
 
-import axios from 'axios';
 import LegendComponent from 'mvp_office_js/components/legend';
 import ProductList from 'mvp_office_js/components/product_list';
+import { fetchProducts } from 'mvp_office_js/services/products_service';
 
 export default {
     name: 'Catalog',
@@ -45,12 +45,6 @@ export default {
     // it is also can be created function
     // async mounted() {
     async created() {
-        const params = {}; // query parameters
-
-        if (this.currentCategoryId) {
-            params.category = this.currentCategoryId;
-        }
-
         this.loading = true;
 
         // axios.get('/api/products').then((response) => {
@@ -60,11 +54,9 @@ export default {
         // const response = axios.get('/api/products'); - this respnose is a promise
         // const response = await axios.get('/api/products'); // need to add async to mounted
 
-        let response;
+        let data;
         try {
-            response = await axios.get('/api/products', {
-                params,
-            });
+            data = await fetchProducts(this.currentCategoryId);
 
             this.loading = false;
         } catch (e) {
@@ -74,7 +66,7 @@ export default {
         }
 
         // console.log(response);
-        this.products = response.data['hydra:member'];
+        this.products = data.data['hydra:member'];
     },
 };
 </script>

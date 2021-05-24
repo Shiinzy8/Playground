@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Loading from 'mvp_office_js/components/loading';
+import { fetchCategories } from 'mvp_office_js/services/categories_service';
 
 export default {
     name: 'Sidebar',
@@ -71,7 +71,7 @@ export default {
         },
     },
     async created() {
-        const response = await axios.get('/api/categories'); // need to add async to mounted
+        const response = await fetchCategories(); // need to add async to mounted
         this.categories = response.data['hydra:member'];
     },
 };
