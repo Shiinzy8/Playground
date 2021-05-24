@@ -26,6 +26,12 @@ export default {
         LegendComponent,
         ProductList,
     },
+    props: {
+        currentCategoryId: {
+            type: String,
+            default: null,
+        },
+    },
     data() {
         return {
             products: [],
@@ -35,12 +41,23 @@ export default {
     // it is also can be created function
     // async mounted() {
     async created() {
+        const params = {}; // query parameters
+
+        if (this.currentCategoryId) {
+            params.category = this.currentCategoryId;
+        }
+
         // axios.get('/api/products').then((response) => {
         //     // then function is a promise
         //     console.log(response);
         // });
         // const response = axios.get('/api/products'); - this respnose is a promise
-        const response = await axios.get('/api/products'); // need to add async to mounted
+        // const response = await axios.get('/api/products'); // need to add async to mounted
+
+        const response = await axios.get('/api/products', {
+            params,
+        });
+
         // console.log(response);
         this.products = response.data['hydra:member'];
     },
