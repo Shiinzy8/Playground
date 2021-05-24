@@ -9,5 +9,5 @@ export function fetchProducts(categoryIri) {
     if (categoryIri) {
         params.category = categoryIri;
     }
-    return axios.get('/api/products', params).then((response) => response.data);
+    return axios.get('/api/products', { params });
 }

@@ -54,10 +54,9 @@ export default {
         // const response = axios.get('/api/products'); - this respnose is a promise
         // const response = await axios.get('/api/products'); // need to add async to mounted
 
-        let data;
+        let response;
         try {
-            data = await fetchProducts(this.currentCategoryId);
-
+            response = await fetchProducts(this.currentCategoryId);
             this.loading = false;
         } catch (e) {
             this.loading = false;
@@ -66,7 +65,7 @@ export default {
         }
 
         // console.log(response);
-        this.products = data.data['hydra:member'];
+        this.products = response.data['hydra:member'];
     },
 };
 </script>
