@@ -7,9 +7,11 @@
             <ul class="nav flex-column mb4">
                 <li class="nav-item">
                     <a
-                        class="nav-link"
+                        :class="{'nav-link': true, 'selected': currentCategoryId === null,}"
                         href="/"
-                    >All Products</a>
+                    >
+                        All Products
+                    </a>
                 </li>
                 <li
                     v-for="(category) in categories"
@@ -17,7 +19,7 @@
                     class="nav-item"
                 >
                     <a
-                        class="nav-link"
+                        :class="{'nav-link': true, 'selected': category['@id'] === currentCategoryId,}"
                         :href="`/andrii/mvp_office/category/${category.id}`"
                     >
                         {{ category.name }}
@@ -53,6 +55,11 @@ export default {
             categories: [],
         };
     },
+    computed: {
+        currentCategoryId() {
+            return window.currentCategoryId;
+        },
+    },
     async created() {
         const response = await axios.get('/api/categories'); // need to add async to mounted
         this.categories = response.data['hydra:member'];
@@ -69,7 +76,15 @@ export default {
 
     ul {
         li a:hover {
-            background: $blue-component-link-hover
+            background: $blue-component-link-hover;
+        }
+
+        li a.selected {
+            background: $light-component-border;
+        }
+
+        :global li a.selected {
+            background: $light-component-border;
         }
     }
 }
