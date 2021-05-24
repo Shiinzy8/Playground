@@ -71,8 +71,7 @@ export default {
         },
     },
     async created() {
-        const response = await fetchCategories(); // need to add async to mounted
-        this.categories = response.data['hydra:member'];
+        this.categories = await fetchCategories();
     },
 };
 
