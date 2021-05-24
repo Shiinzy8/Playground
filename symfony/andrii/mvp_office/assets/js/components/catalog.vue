@@ -2,9 +2,10 @@
     <div>
         <div class="row">
             <div class="col-12">
-                <h1>
-                    Products
-                </h1>
+                <title-component
+                    :current-category-id="currentCategoryId"
+                    :categories="categories"
+                />
             </div>
         </div>
         <product-list
@@ -19,6 +20,7 @@
 
 <script>
 
+import TitleComponent from 'mvp_office_js/components/title';
 import LegendComponent from 'mvp_office_js/components/legend';
 import ProductList from 'mvp_office_js/components/product_list';
 import { fetchProducts } from 'mvp_office_js/services/products_service';
@@ -28,11 +30,16 @@ export default {
     components: {
         LegendComponent,
         ProductList,
+        TitleComponent,
     },
     props: {
         currentCategoryId: {
             type: String,
             default: null,
+        },
+        categories: {
+            type: Array,
+            required: true,
         },
     },
     data() {

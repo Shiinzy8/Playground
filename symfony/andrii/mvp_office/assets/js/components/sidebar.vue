@@ -42,7 +42,6 @@
 
 <script>
 import Loading from 'mvp_office_js/components/loading';
-import { fetchCategories } from 'mvp_office_js/services/categories_service';
 
 export default {
     name: 'Sidebar',
@@ -58,22 +57,16 @@ export default {
             type: String,
             default: null,
         },
-    },
-    data() {
-        return {
-            categories: [],
-        };
+        categories: {
+            type: Array,
+            required: true,
+        },
     },
     computed: {
         loading() {
             return this.categories.length === 0;
             // if there are no categories that means we are loading data
         },
-    },
-    async created() {
-        const response = await fetchCategories();
-
-        this.categories = response.data['hydra:member'];
     },
 };
 

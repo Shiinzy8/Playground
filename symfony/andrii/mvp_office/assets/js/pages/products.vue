@@ -5,20 +5,26 @@
                 <sidebar
                     :collapsed="sidebarCollapsed"
                     :current-category-id="currentCategoryId"
+                    :categories="categories"
                     @toggle-collapsed="toggleSidebarCollapsed"
                 />
             </aside>
             <div :class="contentClass">
-                <catalog :current-category-id="currentCategoryId" />
+                <catalog
+                    :current-category-id="currentCategoryId"
+                    :categories="categories"
+                />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
 import Catalog from 'mvp_office_js/components/catalog';
 import Sidebar from 'mvp_office_js/components/sidebar';
 import { getCurrentCategoryId } from 'mvp_office_js/services/page_contex';
+import { fetchCategories } from 'mvp_office_js/services/categories_service';
 
 export default {
     name: 'Products',
@@ -29,6 +35,7 @@ export default {
     data() {
         return {
             sidebarCollapsed: false,
+            categories: [],
         };
     },
     computed: {
@@ -41,6 +48,11 @@ export default {
         currentCategoryId() {
             return getCurrentCategoryId();
         },
+    },
+    async created() {
+        const response = await fetchCategories();
+
+        this.categories = response.data['hydra:member'];
     },
     methods: {
         toggleSidebarCollapsed() {
