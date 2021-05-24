@@ -71,7 +71,9 @@ export default {
         },
     },
     async created() {
-        this.categories = await fetchCategories();
+        const response = await fetchCategories();
+
+        this.categories = response.data['hydra:member'];
     },
 };
 
