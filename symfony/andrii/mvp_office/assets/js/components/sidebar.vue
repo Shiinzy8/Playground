@@ -41,6 +41,7 @@
 
 <script>
 import axios from 'axios';
+import { getCurrentCategoryId } from 'mvp_office_js/services/page_contex.js';
 
 export default {
     name: 'Sidebar',
@@ -57,7 +58,7 @@ export default {
     },
     computed: {
         currentCategoryId() {
-            return window.currentCategoryId;
+            return getCurrentCategoryId();
         },
     },
     async created() {
