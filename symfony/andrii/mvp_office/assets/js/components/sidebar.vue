@@ -71,7 +71,7 @@ export default {
 <style lang="scss" module>
 @import '~mvp_office_scss/components/light-component.scss';
 
-.component {
+.component :global {
     @include light-component;
 
     ul {
@@ -83,7 +83,7 @@ export default {
             background: $light-component-border;
         }
 
-        :global li a.selected {
+        li a.selected {
             background: $light-component-border;
         }
     }
