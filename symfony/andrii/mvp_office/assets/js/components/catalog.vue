@@ -7,6 +7,9 @@
                     :categories="categories"
                 />
             </div>
+            <div class="col-9">
+                <search-bar />
+            </div>
         </div>
         <product-list
             :products="products"
@@ -23,6 +26,7 @@
 import TitleComponent from 'mvp_office_js/components/title';
 import LegendComponent from 'mvp_office_js/components/legend';
 import ProductList from 'mvp_office_js/components/product_list';
+import SearchBar from 'mvp_office_js/components/search_bar'
 import { fetchProducts } from 'mvp_office_js/services/products_service';
 
 export default {
@@ -31,6 +35,7 @@ export default {
         LegendComponent,
         ProductList,
         TitleComponent,
+        SearchBar,
     },
     props: {
         currentCategoryId: {
