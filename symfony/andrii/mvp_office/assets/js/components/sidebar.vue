@@ -41,7 +41,6 @@
 
 <script>
 import axios from 'axios';
-import { getCurrentCategoryId } from 'mvp_office_js/services/page_contex.js';
 
 export default {
     name: 'Sidebar',
@@ -50,17 +49,17 @@ export default {
             type: Boolean,
             required: true,
         },
+        currentCategoryId: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
             categories: [],
         };
     },
-    computed: {
-        currentCategoryId() {
-            return getCurrentCategoryId();
-        },
-    },
+    computed: {},
     async created() {
         const response = await axios.get('/api/categories'); // need to add async to mounted
         this.categories = response.data['hydra:member'];
