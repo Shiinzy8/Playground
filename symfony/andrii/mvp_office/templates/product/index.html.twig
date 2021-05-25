@@ -7,6 +7,17 @@
 {% block javascripts %}
     {{ parent() }}
 
+    <script>
+        {% if currentCategoryId is defined %}
+            window.currentCategoryId = '{{ currentCategoryId|e('js') }}'; {# set a global variable #}
+{# e('js') makes variable data save for js #}
+        {% else %}
+            window.currentCategoryId = null
+        {% endif %}
+
+        window.categories = {{ categories|jsonld }};
+    </script>
+
     {{ encore_entry_script_tags('a/mvp_office/product') }}
 {% endblock %}
 

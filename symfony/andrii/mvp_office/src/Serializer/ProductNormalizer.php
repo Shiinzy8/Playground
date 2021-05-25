@@ -54,7 +54,7 @@ class ProductNormalizer implements ContextAwareNormalizerInterface, CacheableSup
 
         // add a fake image field
         $data['image'] = $this->assetPackages
-            ->getUrl('uploads/products/' . $object->getImageFilename());
+            ->getUrl('images/andrii/mvp_office/uploads/products/' . $object->getImageFilename());
 
         return $data;
     }

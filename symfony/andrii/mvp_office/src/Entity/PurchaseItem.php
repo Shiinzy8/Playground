@@ -8,7 +8,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="MVP_Office\Repository\PurchaseItemRepository")
- * @ORM\Table(name="andrii_mvp_office_purche_item")
+ * @ORM\Table(name="andrii_mvp_office_purchase_item")
  * @ApiResource(
  *     normalizationContext={"groups"={"purchase_item:read"}},
  *     denormalizationContext={"groups"={"purchase_item:write"}}
