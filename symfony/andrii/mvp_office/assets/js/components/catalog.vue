@@ -14,7 +14,7 @@
             </div>
         </div>
         <product-list
-            :products="filteredProducts"
+            :products="products"
             :loading="loading"
         />
         <div class="row">
@@ -52,50 +52,31 @@ export default {
     data() {
         return {
             products: [],
-            searchTerm: '',
             loading: false,
             legend: 'Shipping takes 10-12 weeks, and products probably won\'t work',
         };
     },
-    computed: {
-        filteredProducts() {
-            if (!this.searchTerm) {
-                return this.products;
-            }
-
-            return this.products.filter((product) => (
-                product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-            ));
-        },
-    },
-    // it is also can be created function
-    // async mounted() {
     async created() {
-        this.loading = true;
-
-        // axios.get('/api/products').then((response) => {
-        //     // then function is a promise
-        //     console.log(response);
-        // });
-        // const response = axios.get('/api/products'); - this respnose is a promise
-        // const response = await axios.get('/api/products'); // need to add async to mounted
-
-        let response;
-        try {
-            response = await fetchProducts(this.currentCategoryId);
-            this.loading = false;
-        } catch (e) {
-            this.loading = false;
-
-            return;
-        }
-
-        // console.log(response);
-        this.products = response.data['hydra:member'];
+        this.loadProducts(null);
     },
     methods: {
         onSearchProducts(event) {
-            this.searchTerm = event.term;
+            this.loadProducts(event.term);
+        },
+        async loadProducts(searchTerm) {
+            this.loading = true;
+
+            let response;
+            try {
+                response = await fetchProducts(this.currentCategoryId, searchTerm);
+                this.loading = false;
+            } catch (e) {
+                this.loading = false;
+
+                return;
+            }
+
+            this.products = response.data['hydra:member'];
         },
     },
 };
