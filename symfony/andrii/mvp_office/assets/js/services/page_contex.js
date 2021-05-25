@@ -4,5 +4,8 @@
  * @returns (string|null)
  */
 export function getCurrentCategoryId() {
+    if (!window.currentCategoryId) {
+        return '';
+    }
     return window.currentCategoryId;
 }

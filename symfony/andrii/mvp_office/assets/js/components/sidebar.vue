@@ -9,7 +9,7 @@
                 <li class="nav-item">
                     <a
                         :class="{'nav-link': true, 'selected': currentCategoryId === null,}"
-                        href="/"
+                        href="/andrii/mvp_office"
                     >
                         All Products
                     </a>
