@@ -26,7 +26,7 @@
 import TitleComponent from 'mvp_office_js/components/title';
 import LegendComponent from 'mvp_office_js/components/legend';
 import ProductList from 'mvp_office_js/components/product_list';
-import SearchBar from 'mvp_office_js/components/search_bar'
+import SearchBar from 'mvp_office_js/components/search_bar';
 import { fetchProducts } from 'mvp_office_js/services/products_service';
 
 export default {
@@ -50,6 +50,7 @@ export default {
     data() {
         return {
             products: [],
+            searchTerm: '',
             loading: false,
             legend: 'Shipping takes 10-12 weeks, and products probably won\'t work',
         };
