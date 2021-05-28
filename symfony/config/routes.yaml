@@ -8,3 +8,8 @@ mvp_office:
   type:     annotation
   prefix: '/andrii/mvp_office'
   name_prefix: 'andrii_mvp_office_'
+write_solid:
+  resource: '../andrii/write_solid/src/Controller/'
+  type:     annotation
+  prefix: '/andrii/write_solid'
+  name_prefix: 'andrii_write_solid'
