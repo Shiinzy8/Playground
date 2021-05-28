@@ -12,4 +12,4 @@ write_solid:
   resource: '../andrii/write_solid/src/Controller/'
   type:     annotation
   prefix: '/andrii/write_solid'
-  name_prefix: 'andrii_write_solid'
+  name_prefix: 'andrii_write_solid_'

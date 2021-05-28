@@ -10,7 +10,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class SerializerExtension extends AbstractExtension
 {
-    private $serializer;
+    private SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
     {
@@ -19,9 +19,7 @@ class SerializerExtension extends AbstractExtension
 
     public function getFilters(): array
     {
-        return [
-            new TwigFilter('jsonld', [$this, 'serializeToJsonLd'], ['is_safe' => ['html']]),
-        ];
+        return [new TwigFilter('jsonld', [$this, 'serializeToJsonLd'], ['is_safe' => ['html']]),];
     }
 
     public function serializeToJsonLd($data): string

@@ -22,12 +22,22 @@ services:
             - '../src/Tests/'
     Cauldron\:
         resource: '../andrii/cauldron/src/'
+        exclude:
+            - '../andrii/cauldron/src/DependencyInjection/'
+            - '../andrii/cauldron/src/Entity/'
+            - '../andrii/cauldron/src/Tests/'
     MVP_Office\:
         resource: '../andrii/mvp_office/src/'
         exclude:
             - '../andrii/mvp_office/src/DependencyInjection/'
             - '../andrii/mvp_office/src/Entity/'
             - '../andrii/mvp_office/src/Tests/'
+    Write_solid\:
+        resource: '../andrii/write_solid/src/'
+        exclude:
+            - '../andrii/write_solid/src/DependencyInjection/'
+            - '../andrii/write_solid/src/Entity/'
+            - '../andrii/write_solid/src/Tests/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -39,6 +49,9 @@ services:
         tags: ['controller.service_arguments']
     MVP_Office\Controller\:
         resource: '../andrii/mvp_office/src/Controller/'
+        tags: [ 'controller.service_arguments' ]
+    Write_solid\Controller\:
+        resource: '../andrii/write_solid/src/Controller/'
         tags: [ 'controller.service_arguments' ]
 
     # add more service definitions when explicit configuration is needed

@@ -21,9 +21,12 @@ class ProductController extends AbstractController
      */
     public function index(CategoryRepository $categoryRepository): Response
     {
-        return $this->render('@andrii_mvp_office/product/index.html.twig', [
-            'categories' => $categoryRepository->findAll(),
-        ]);
+        return $this->render(
+            '@andrii_mvp_office/product/index.html.twig',
+            [
+                'categories' => $categoryRepository->findAll(),
+            ]
+        );
     }
 
     /**
@@ -39,10 +42,13 @@ class ProductController extends AbstractController
         CategoryRepository $categoryRepository,
     ): Response
     {
-        return $this->render('@andrii_mvp_office/product/index.html.twig', [
-            'currentCategoryId' => $iriConverter->getIriFromItem($category),
-            'categories' => $categoryRepository->findAll(),
-        ]);
+        return $this->render(
+            '@andrii_mvp_office/product/index.html.twig',
+            [
+                'currentCategoryId' => $iriConverter->getIriFromItem($category),
+                'categories' => $categoryRepository->findAll(),
+            ]
+        );
     }
 
     /**
