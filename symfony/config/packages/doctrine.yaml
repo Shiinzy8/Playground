@@ -30,3 +30,13 @@ doctrine:
                         dir: '%kernel.project_dir%/andrii/mvp_office/src/Entity'
                         prefix: 'MVP_Office\Entity'
                         alias: MVP_Office
+            andrii_write_solid:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                connection: mysql
+                mappings:
+                    Write_solid:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/andrii/write_solid/src/Entity'
+                        prefix: 'Write_solid\Entity'
+                        alias: Write_solid

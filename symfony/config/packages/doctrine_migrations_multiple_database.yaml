@@ -12,3 +12,9 @@ doctrine_migrations_multiple_database:
       storage:
         table_storage:
           table_name: 'andrii_mvp_office_d_m_v' # Default (SQL table) metadata storage configuration
+    andrii_write_solid:
+      migrations_paths:
+        'Write_solid\Migrations': '%kernel.project_dir%/andrii/write_solid/migrations'
+      storage:
+        table_storage:
+          table_name: 'andrii_write_solid_d_m_v' # Default (SQL table) metadata storage configuration

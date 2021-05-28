@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('a/cauldron/app', './andrii/cauldron/assets/js/app.js')
+    .addEntry('a/write_solid/app', './andrii/write_solid/assets/js/app.js')
     .addEntry('a/mvp_office/app', './andrii/mvp_office/assets/js/app.js')
     .addEntry('a/mvp_office/product', './andrii/mvp_office/assets/js/products.js')
 

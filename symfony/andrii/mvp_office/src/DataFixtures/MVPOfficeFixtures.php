@@ -1,8 +1,6 @@
 <?php
 
-
 namespace MVP_Office\DataFixtures;
-
 
 use MVP_Office\Entity\Category;
 use MVP_Office\Entity\Color;
@@ -11,7 +9,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Filesystem\Filesystem;
 
-class AppFixtures extends Fixture
+class MVPOfficeFixtures extends Fixture
 {
     /**
      * @param ObjectManager $manager
