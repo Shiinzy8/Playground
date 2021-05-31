@@ -22,7 +22,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, UserRepository $userRepository): Response
     {
         if ($this->getUser()) {
-            $this->redirectToRoute('homepage');
+            $this->redirectToRoute('andrii_write_solid_homepage');
         }
 
         $validUser = $userRepository->getSingleUser();
