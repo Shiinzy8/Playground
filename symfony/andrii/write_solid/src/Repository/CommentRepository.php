@@ -3,9 +3,9 @@
 namespace Write_solid\Repository;
 
 use Write_solid\Entity\Comment;
+use Write_solid\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Write_solid\Entity\User;
 
 /**
  * @method Comment|null find($id, $lockMode = null, $lockVersion = null)
