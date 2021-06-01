@@ -27,5 +27,4 @@ class DescriptionFactor implements ScoringFactorInterface
 
         return $score;
     }
-
 }
