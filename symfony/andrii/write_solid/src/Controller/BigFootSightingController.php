@@ -6,6 +6,8 @@ use Write_solid\Entity\BigFootSighting;
 use Write_solid\Form\BigfootSightingType;
 use Write_solid\Service\SightingScorer;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,10 +24,12 @@ class BigFootSightingController extends AbstractController
      * @Route("/sighting/upload", name="sighting_upload")
      * @IsGranted("ROLE_USER")
      */
-    public function upload(Request $request, SightingScorer $sightingScorer, EntityManagerInterface $entityManager)
+    public function upload(Request $request, SightingScorer $sightingScorer, ManagerRegistry $registry)
     {
         $form = $this->createForm(BigFootSightingType::class);
         $form->handleRequest($request);
+
+        $entityManager = $registry->getManager('andrii_write_solid');
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var BigFootSighting $sighting */
@@ -41,7 +45,7 @@ class BigFootSightingController extends AbstractController
             $this->addFlash('success', 'New BigFoot Sighting created successfully!');
 
             return $this->redirectToRoute(
-                'sighting_show',
+                'andrii_write_solid_sighting_show',
                 [
                     'id' => $sighting->getId()
                 ]
