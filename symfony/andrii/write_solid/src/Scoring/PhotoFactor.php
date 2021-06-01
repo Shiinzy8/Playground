@@ -4,7 +4,7 @@ namespace Write_solid\Scoring;
 
 use Write_solid\Entity\BigFootSighting;
 
-class PhotoFactor implements ScoringFactorInterface
+class PhotoFactor implements ScoringFactorInterface, ScoreAdjusterInterface
 {
     public function score(BigFootSighting $sighting): int
     {

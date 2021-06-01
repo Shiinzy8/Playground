@@ -62,3 +62,4 @@ services:
         class: Write_solid\Service\DebuggableSightingScore
         arguments:
             $scoringFactors: !tagged_iterator scoring.factor
+            $scoringAdjusters: !tagged_iterator scoring.adjuster

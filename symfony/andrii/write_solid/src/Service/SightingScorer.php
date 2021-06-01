@@ -4,6 +4,7 @@ namespace Write_solid\Service;
 
 use Write_solid\Entity\BigFootSighting;
 use Write_solid\Model\BigFootSightingScore;
+use Write_solid\Scoring\ScoreAdjusterInterface;
 use Write_solid\Scoring\ScoringFactorInterface;
 
 /**
@@ -18,12 +19,18 @@ class SightingScorer
     private iterable $scoringFactors;
 
     /**
+     * @var ScoreAdjusterInterface[]
+     */
+    private iterable $scoringAdjusters;
+
+    /**
      * SightingScorer constructor.
      * @param array $scoringFactors
      */
-    public function __construct(iterable $scoringFactors)
+    public function __construct(iterable $scoringFactors, iterable $scoringAdjusters)
     {
         $this->scoringFactors = $scoringFactors;
+        $this->scoringAdjusters = $scoringAdjusters;
     }
 
     public function score(BigFootSighting $sighting): BigFootSightingScore
@@ -33,8 +40,8 @@ class SightingScorer
             $score += $scoringFactor->score($sighting);
         }
 
-        foreach ($this->scoringFactors as $scoringFactor) {
-            $score = $scoringFactor->adjustScore($score, $sighting);
+        foreach ($this->scoringAdjusters as $scoringAdjuster) {
+            $score = $scoringAdjuster->adjustScore($score, $sighting);
         }
 
         return new BigFootSightingScore($score);
