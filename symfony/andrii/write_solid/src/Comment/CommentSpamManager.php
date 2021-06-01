@@ -3,7 +3,6 @@
 namespace Write_solid\Comment;
 
 use Write_solid\Entity\Comment;
-use Write_solid\Service\RegexSpamWordHelper;
 
 /**
  * Class CommentSpamManager
@@ -11,19 +10,19 @@ use Write_solid\Service\RegexSpamWordHelper;
  */
 class CommentSpamManager
 {
-    private RegexSpamWordHelper $spamWordHelper;
+    private CommentSpamCounterInterface $spamWordCounter;
 
-    public function __construct(RegexSpamWordHelper $spamWordHelper)
+    public function __construct(CommentSpamCounterInterface $spamWordCounter)
     {
-        $this->spamWordHelper = $spamWordHelper;
+        $this->spamWordCounter = $spamWordCounter;
     }
 
     public function validate(Comment $comment): void
     {
         $content = $comment->getContent();
-        $badWordsOnComment = $this->spamWordHelper->getMatchSpamWords($content);
+        $badWordsOnComment = $this->spamWordCounter->countSpamWords($content);
 
-        if (count($badWordsOnComment) >= 2) {
+        if ($badWordsOnComment >= 2) {
             // We could throw a custom exception if needed
             throw new \RuntimeException('Message detected as spam');
         }

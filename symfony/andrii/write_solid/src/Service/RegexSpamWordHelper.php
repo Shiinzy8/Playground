@@ -2,11 +2,13 @@
 
 namespace Write_solid\Service;
 
+use Write_solid\Comment\CommentSpamCounterInterface;
+
 /**
  * Class RegexSpamWordHelper
  * @package Write_solid\Service
  */
-class RegexSpamWordHelper
+class RegexSpamWordHelper implements CommentSpamCounterInterface
 {
     /**
      * @return string[]
@@ -22,7 +24,12 @@ class RegexSpamWordHelper
         ];
     }
 
-    public function getMatchSpamWords(string $content): array
+    public function countSpamWords(string $content): int
+    {
+        return count($this->getMatchSpamWords($content));
+    }
+
+    private function getMatchSpamWords(string $content): array
     {
         $badWordsOnComment = [];
         $regex = implode('|', $this->spamWords());
