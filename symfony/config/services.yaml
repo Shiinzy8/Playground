@@ -56,6 +56,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    Write_solid\Service\DebuggableSightingScore: '@Write_solid\Service\SightingScorer'
+
     Write_solid\Service\SightingScorer:
+        class: Write_solid\Service\DebuggableSightingScore
         arguments:
             $scoringFactors: !tagged_iterator scoring.factor

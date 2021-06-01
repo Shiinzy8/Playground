@@ -4,6 +4,7 @@ namespace Write_solid\Controller;
 
 use Write_solid\Entity\BigFootSighting;
 use Write_solid\Form\BigfootSightingType;
+use Write_solid\Model\DebuggableBigFootSightingScore;
 use Write_solid\Service\SightingScorer;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -41,6 +42,13 @@ class BigFootSightingController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'New BigFoot Sighting created successfully!');
+
+            if ($bfsScore instanceof DebuggableBigFootSightingScore) {
+                $this->addFlash('success', sprintf(
+                    'Btw, the scoring took %f milliseconds',
+                    $bfsScore->getCalculationTime() * 1000
+                ));
+            }
 
             return $this->redirectToRoute(
                 'andrii_write_solid_sighting_show',
