@@ -1,15 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        Write_solid\Entity\User:
+            algorithm: auto
     providers:
-        users_in_memory: { memory: null }
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
                 class: Write_solid\Entity\User
                 property: email
-    encoders:
-        Write_solid\Entity\User:
-            algorithm: auto
+                manager_name: andrii_write_solid
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -17,10 +17,12 @@ security:
         main:
             anonymous: true
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
             guard:
                 authenticators:
                     - Write_solid\Security\LoginFormAuthenticator
+            logout:
+                path: andrii_write_solid_logout
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
